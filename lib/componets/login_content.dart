@@ -192,14 +192,14 @@ class _LoginContentState extends State<LoginContent>
           padding: const EdgeInsets.only(top: 100),
           child: Stack(
             children: [
-              ListView(
-                // mainAxisAlignment: MainAxisAlignment.center,
-                // crossAxisAlignment: CrossAxisAlignment.stretch,
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: createAccountContent,
               ),
-              ListView(
-                // mainAxisAlignment: MainAxisAlignment.center,
-                // crossAxisAlignment: CrossAxisAlignment.stretch,
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: loginContent,
               ),
             ],
