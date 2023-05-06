@@ -1,10 +1,12 @@
+import 'package:clique/services/cloud/cloud_storage_exception.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:clique/firebase_options.dart';
 import 'package:clique/services/auth/auth_user.dart';
 import 'package:clique/services/auth/auth_provider.dart';
 import 'package:clique/services/auth/auth_exceptions.dart';
 import 'package:firebase_auth/firebase_auth.dart'
-    show FirebaseAuth, FirebaseAuthException;
+    show FirebaseAuth, FirebaseAuthException, User;
 
 class FirebaseAuthProvider implements AuthProvider {
   @override
@@ -16,7 +18,21 @@ class FirebaseAuthProvider implements AuthProvider {
       await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password);
       final user = currentUser;
+      final CollectionReference usersCollection =
+          FirebaseFirestore.instance.collection('users');
+      final User? currentuser = FirebaseAuth.instance.currentUser;
       if (user != null) {
+        try {
+          final String userId = currentuser!.uid;
+          await usersCollection.doc(userId).set({
+            'name': name,
+            'email': currentuser.email,
+            'uid': currentuser.uid,
+          });
+        } catch (e) {
+          print('Error adding user credentials to Firestore: $e');
+        }
+
         return user;
       } else {
         throw UserNotLogedInException();
