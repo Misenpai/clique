@@ -1,6 +1,10 @@
 import 'package:clique/constants/routes.dart';
 import 'package:clique/firebase_options.dart';
+import 'package:clique/group_chat/group_chat_screen.dart';
+import 'package:clique/screens/home_screen.dart';
 import 'package:clique/views/login_view.dart';
+import 'package:clique/views/register_view.dart';
+import 'package:clique/views/verify_email_view.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +18,10 @@ void main() {
     home: const HomePage(),
     routes: {
       loginRoute: (context) => const LoginView(),
-      // registerRoute: (context)=> const RegisterView();
+      registerRoute: (context) => const RegisterView(),
+      verifyEmailRoute: (context) => const VerifyEmailView(),
+      homeScreenRoute: (context) => const HomeScreen(),
+      groupChatscreen:(context) => const GroupChatScreen(),
     },
   ));
 }
