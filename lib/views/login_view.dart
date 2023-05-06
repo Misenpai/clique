@@ -1,10 +1,10 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:clique/services/auth/auth_exceptions.dart';
 import 'package:clique/services/auth/auth_service.dart';
 import 'package:clique/utilities/dialog/error_dialog.dart';
-import 'package:clique/views/register_view.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:flutter/services.dart';
 import 'package:clique/constants/routes.dart';
 
 class LoginView extends StatefulWidget {
@@ -43,8 +43,7 @@ class _LoginViewState extends State<LoginView> {
                     child: IconButton(
                         icon: const Icon(Icons.arrow_back_ios),
                         onPressed: () {
-                          Navigator.of(context).pushNamedAndRemoveUntil(
-                              registerRoute, (route) => false);
+                          SystemNavigator.pop();
                         }),
                   ),
                   SizedBox(
@@ -160,7 +159,7 @@ class _LoginViewState extends State<LoginView> {
 
   Widget field(
       Size size, String hintText, IconData icon, TextEditingController cont) {
-    return Container(
+    return SizedBox(
       height: size.height / 14,
       width: size.width / 1.1,
       child: TextField(
@@ -168,7 +167,7 @@ class _LoginViewState extends State<LoginView> {
         decoration: InputDecoration(
           prefixIcon: Icon(icon),
           hintText: hintText,
-          hintStyle: TextStyle(color: Colors.grey),
+          hintStyle: const TextStyle(color: Colors.grey),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
           ),
