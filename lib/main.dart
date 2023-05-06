@@ -21,7 +21,7 @@ void main() {
       registerRoute: (context) => const RegisterView(),
       verifyEmailRoute: (context) => const VerifyEmailView(),
       homeScreenRoute: (context) => const HomeScreen(),
-      groupChatscreen:(context) => const GroupChatScreen(),
+      groupChatscreen: (context) => const GroupChatScreen(),
     },
   ));
 }
