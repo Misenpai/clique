@@ -1,8 +1,8 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:clique/constants/routes.dart';
 import 'package:clique/services/auth/auth_service.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 
 class VerifyEmailView extends StatefulWidget {
   const VerifyEmailView({super.key});

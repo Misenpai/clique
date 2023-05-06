@@ -1,11 +1,11 @@
+// ignore_for_file: avoid_print, use_build_context_synchronously
+
 import 'package:clique/constants/routes.dart';
 import 'package:clique/screens/chat_room.dart';
 import 'package:clique/services/auth/auth_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -54,13 +54,13 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
   }
 
   void onSearch() async {
-    FirebaseFirestore _firestore = FirebaseFirestore.instance;
+    FirebaseFirestore firestore = FirebaseFirestore.instance;
 
     setState(() {
       isLoading = true;
     });
 
-    await _firestore
+    await firestore
         .collection('users')
         .where("email", isEqualTo: _search.text)
         .get()
