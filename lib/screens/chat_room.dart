@@ -2,8 +2,8 @@
 
 import 'dart:io';
 
+import 'package:clique/services/cloud/cloud_current_user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -17,7 +17,6 @@ class ChatRoom extends StatelessWidget {
 
   final TextEditingController _message = TextEditingController();
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-  final FirebaseAuth _auth = FirebaseAuth.instance;
 
   File? imageFile;
 
@@ -42,12 +41,11 @@ class ChatRoom extends StatelessWidget {
         .collection('chats')
         .doc(fileName)
         .set({
-      "sendby": _auth.currentUser!.displayName,
+      "sendby": getUserName(),
       "message": "",
       "type": "img",
       "time": FieldValue.serverTimestamp(),
     });
-
     var ref =
         FirebaseStorage.instance.ref().child('images').child("$fileName.jpg");
 
@@ -60,6 +58,7 @@ class ChatRoom extends StatelessWidget {
           .delete();
 
       status = 0;
+      return Future.value();
     });
 
     if (status == 1) {
@@ -79,7 +78,7 @@ class ChatRoom extends StatelessWidget {
   void onSendMessage() async {
     if (_message.text.isNotEmpty) {
       Map<String, dynamic> messages = {
-        "sendby": _auth.currentUser!.displayName,
+        "sendby": getUserName(),
         "message": _message.text,
         "type": "text",
         "time": FieldValue.serverTimestamp(),
@@ -194,7 +193,7 @@ class ChatRoom extends StatelessWidget {
     return map['type'] == "text"
         ? Container(
             width: size.width,
-            alignment: map['sendby'] == _auth.currentUser!.displayName
+            alignment: map['sendby'] == getUserName()
                 ? Alignment.centerRight
                 : Alignment.centerLeft,
             child: Container(
@@ -202,7 +201,7 @@ class ChatRoom extends StatelessWidget {
               margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 8),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
-                color: Colors.blue,
+                color: Colors.black,
               ),
               child: Text(
                 map['message'],
@@ -218,7 +217,7 @@ class ChatRoom extends StatelessWidget {
             height: size.height / 2.5,
             width: size.width,
             padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
-            alignment: map['sendby'] == _auth.currentUser!.displayName
+            alignment: map['sendby'] == getUserName()
                 ? Alignment.centerRight
                 : Alignment.centerLeft,
             child: InkWell(

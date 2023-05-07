@@ -1,3 +1,4 @@
+import 'package:clique/constants/routes.dart';
 import 'package:clique/group_chat/add_members.dart';
 import 'package:clique/group_chat/group_chat_room.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -46,6 +47,18 @@ class _GroupChatScreenState extends State<GroupChatScreen> {
 
     return Scaffold(
       appBar: AppBar(
+        leading: Container(
+          alignment: Alignment.centerLeft,
+          child: IconButton(
+            icon: const Icon(Icons.arrow_back_ios),
+            onPressed: () {
+              Navigator.of(context).pushNamedAndRemoveUntil(
+                homeScreenRoute,
+                (route) => false,
+              );
+            },
+          ),
+        ),
         title: const Text("Groups"),
       ),
       body: isLoading

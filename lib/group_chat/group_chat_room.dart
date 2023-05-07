@@ -1,4 +1,5 @@
 import 'package:clique/group_chat/group_info.dart';
+import 'package:clique/services/cloud/cloud_current_user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +16,7 @@ class GroupChatRoom extends StatelessWidget {
   void onSendMessage() async {
     if (_message.text.isNotEmpty) {
       Map<String, dynamic> chatData = {
-        "sendBy": _auth.currentUser!.displayName,
+        "sendBy": getUserName(),
         "message": _message.text,
         "type": "text",
         "time": FieldValue.serverTimestamp(),
@@ -125,7 +126,7 @@ class GroupChatRoom extends StatelessWidget {
       if (chatMap['type'] == "text") {
         return Container(
           width: size.width,
-          alignment: chatMap['sendBy'] == _auth.currentUser!.displayName
+          alignment: chatMap['sendBy'] == getUserName()
               ? Alignment.centerRight
               : Alignment.centerLeft,
           child: Container(
@@ -162,7 +163,7 @@ class GroupChatRoom extends StatelessWidget {
       } else if (chatMap['type'] == "img") {
         return Container(
           width: size.width,
-          alignment: chatMap['sendBy'] == _auth.currentUser!.displayName
+          alignment: chatMap['sendBy'] == getUserName()
               ? Alignment.centerRight
               : Alignment.centerLeft,
           child: Container(
