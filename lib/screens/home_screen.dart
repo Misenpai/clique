@@ -3,6 +3,7 @@
 import 'package:clique/constants/routes.dart';
 import 'package:clique/screens/chat_room.dart';
 import 'package:clique/services/auth/auth_service.dart';
+import 'package:clique/services/cloud/cloud_current_user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -73,42 +74,6 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
     });
   }
 
-  // String getCurrentUserName() {
-  //   String name = '';
-  //   User? user = FirebaseAuth.instance.currentUser;
-  //   if (user != null) {
-  //     FirebaseFirestore.instance
-  //         .collection('users')
-  //         .doc(user.uid)
-  //         .get()
-  //         .then((DocumentSnapshot documentSnapshot) {
-  //       if (documentSnapshot.exists) {
-  //         name = documentSnapshot.data()!['name'];
-  //       }
-  //     });
-  //   }
-  //   return name;
-  // }
-
-  late String userName;
-
-  String getUserName() {
-    User? user = _auth.currentUser;
-    if (user != null) {
-      _firestore.collection('users').doc(user.uid).get().then((doc) {
-        if (doc.exists) {
-          userName = doc.data()!['name'];
-          print('Current user name: $userName');
-        } else {
-          print('No such document!');
-        }
-      });
-    } else {
-      print('User not signed in');
-    }
-    return userName;
-  }
-
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -171,9 +136,6 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                 userMap != null
                     ? ListTile(
                         onTap: () {
-                          print(getUserName());
-                          print(userMap?['name']);
-
                           try {
                             String roomId =
                                 chatRoomId(getUserName(), userMap?['name']);
