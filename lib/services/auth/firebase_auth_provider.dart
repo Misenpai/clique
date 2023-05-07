@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:clique/services/cloud/cloud_storage_exception.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -22,6 +24,7 @@ class FirebaseAuthProvider implements AuthProvider {
           FirebaseFirestore.instance.collection('users');
       final User? currentuser = FirebaseAuth.instance.currentUser;
       if (user != null) {
+        currentuser?.updateProfile(displayName: name);
         try {
           final String userId = currentuser!.uid;
           await usersCollection.doc(userId).set({
@@ -30,7 +33,7 @@ class FirebaseAuthProvider implements AuthProvider {
             'uid': currentuser.uid,
           });
         } catch (e) {
-          print('Error adding user credentials to Firestore: $e');
+          throw CouldNotAddUserCredentialsToFirestore();
         }
 
         return user;
