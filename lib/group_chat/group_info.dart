@@ -1,7 +1,7 @@
-// ignore_for_file: avoid_print, avoid_function_literals_in_foreach_calls, use_build_context_synchronously, avoid_unnecessary_containers
+// ignore_for_file: avoid_print, avoid_function_literals_in_foreach_calls
 
-import 'package:clique/constants/routes.dart';
 import 'package:clique/group_chat/add_members.dart';
+import 'package:clique/screens/home_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -19,8 +19,8 @@ class _GroupInfoState extends State<GroupInfo> {
   List membersList = [];
   bool isLoading = true;
 
-  FirebaseFirestore firestore = FirebaseFirestore.instance;
-  FirebaseAuth auth = FirebaseAuth.instance;
+  FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  FirebaseAuth _auth = FirebaseAuth.instance;
 
   @override
   void initState() {
@@ -30,7 +30,7 @@ class _GroupInfoState extends State<GroupInfo> {
   }
 
   Future getGroupDetails() async {
-    await firestore
+    await _firestore
         .collection('groups')
         .doc(widget.groupId)
         .get()
@@ -46,7 +46,7 @@ class _GroupInfoState extends State<GroupInfo> {
     bool isAdmin = false;
 
     membersList.forEach((element) {
-      if (element['uid'] == auth.currentUser!.uid) {
+      if (element['uid'] == _auth.currentUser!.uid) {
         isAdmin = element['isAdmin'];
       }
     });
@@ -61,10 +61,10 @@ class _GroupInfoState extends State<GroupInfo> {
       membersList.removeAt(index);
     });
 
-    await firestore.collection('groups').doc(widget.groupId).update({
+    await _firestore.collection('groups').doc(widget.groupId).update({
       "members": membersList,
     }).then((value) async {
-      await firestore
+      await _firestore
           .collection('users')
           .doc(uid)
           .collection('groups')
@@ -79,7 +79,7 @@ class _GroupInfoState extends State<GroupInfo> {
 
   void showDialogBox(int index) {
     if (checkAdmin()) {
-      if (auth.currentUser!.uid != membersList[index]['uid']) {
+      if (_auth.currentUser!.uid != membersList[index]['uid']) {
         showDialog(
             context: context,
             builder: (context) {
@@ -101,24 +101,26 @@ class _GroupInfoState extends State<GroupInfo> {
       });
 
       for (int i = 0; i < membersList.length; i++) {
-        if (membersList[i]['uid'] == auth.currentUser!.uid) {
+        if (membersList[i]['uid'] == _auth.currentUser!.uid) {
           membersList.removeAt(i);
         }
       }
 
-      await firestore.collection('groups').doc(widget.groupId).update({
+      await _firestore.collection('groups').doc(widget.groupId).update({
         "members": membersList,
       });
 
-      await firestore
+      await _firestore
           .collection('users')
-          .doc(auth.currentUser!.uid)
+          .doc(_auth.currentUser!.uid)
           .collection('groups')
           .doc(widget.groupId)
           .delete();
 
-      Navigator.of(context)
-          .pushNamedAndRemoveUntil(homeScreenRoute, (route) => false);
+      Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(builder: (_) => const HomeScreen()),
+        (route) => false,
+      );
     }
   }
 
@@ -165,14 +167,12 @@ class _GroupInfoState extends State<GroupInfo> {
                             width: size.width / 20,
                           ),
                           Expanded(
-                            child: Container(
-                              child: Text(
-                                widget.groupName,
-                                overflow: TextOverflow.ellipsis,
-                                style: TextStyle(
-                                  fontSize: size.width / 16,
-                                  fontWeight: FontWeight.w500,
-                                ),
+                            child: Text(
+                              widget.groupName,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                fontSize: size.width / 16,
+                                fontWeight: FontWeight.w500,
                               ),
                             ),
                           ),
@@ -207,7 +207,7 @@ class _GroupInfoState extends State<GroupInfo> {
                         ? ListTile(
                             onTap: () => Navigator.of(context).push(
                               MaterialPageRoute(
-                                builder: (_) => AddMembersInGroup(
+                                builder: (_) => AddMembersINGroup(
                                   groupChatId: widget.groupId,
                                   name: widget.groupName,
                                   membersList: membersList,

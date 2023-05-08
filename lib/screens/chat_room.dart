@@ -200,15 +200,21 @@ class ChatRoom extends StatelessWidget {
               padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 14),
               margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 8),
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15),
-                color: Colors.black,
-              ),
+                  borderRadius: BorderRadius.circular(15),
+                  // color: Colors.black,
+                  gradient: const LinearGradient(
+                      begin: Alignment.topRight,
+                      end: Alignment.bottomLeft,
+                      colors: [
+                        Color.fromARGB(147, 0, 187, 212),
+                        Color.fromRGBO(225, 202, 201, 1),
+                      ])),
               child: Text(
                 map['message'],
                 style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w500,
-                  color: Colors.white,
+                  color: Colors.black,
                 ),
               ),
             ),

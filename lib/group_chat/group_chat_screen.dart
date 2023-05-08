@@ -1,18 +1,19 @@
-import 'package:clique/constants/routes.dart';
-import 'package:clique/group_chat/add_members.dart';
+// ignore_for_file: library_private_types_in_public_api
+
+import 'package:clique/group_chat/create_group/add_member.dart';
 import 'package:clique/group_chat/group_chat_room.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class GroupChatScreen extends StatefulWidget {
-  const GroupChatScreen({super.key});
+class GroupChatHomeScreen extends StatefulWidget {
+  const GroupChatHomeScreen({Key? key}) : super(key: key);
 
   @override
-  State<GroupChatScreen> createState() => _GroupChatScreenState();
+  _GroupChatHomeScreenState createState() => _GroupChatHomeScreenState();
 }
 
-class _GroupChatScreenState extends State<GroupChatScreen> {
+class _GroupChatHomeScreenState extends State<GroupChatHomeScreen> {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
   bool isLoading = true;
@@ -47,18 +48,6 @@ class _GroupChatScreenState extends State<GroupChatScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        leading: Container(
-          alignment: Alignment.centerLeft,
-          child: IconButton(
-            icon: const Icon(Icons.arrow_back_ios),
-            onPressed: () {
-              Navigator.of(context).pushNamedAndRemoveUntil(
-                homeScreenRoute,
-                (route) => false,
-              );
-            },
-          ),
-        ),
         title: const Text("Groups"),
       ),
       body: isLoading
@@ -88,10 +77,8 @@ class _GroupChatScreenState extends State<GroupChatScreen> {
       floatingActionButton: FloatingActionButton(
         onPressed: () => Navigator.of(context).push(
           MaterialPageRoute(
-              builder: (_) => const AddMembersInGroup(
-                  name: 'My Group',
-                  membersList: ['Alice', 'Bob', 'Charlie'],
-                  groupChatId: 'my-group-id')),
+            builder: (_) => const AddMembersInGroup(),
+          ),
         ),
         tooltip: "Create Group",
         child: const Icon(Icons.create),
