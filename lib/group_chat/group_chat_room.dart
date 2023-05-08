@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 
 class GroupChatRoom extends StatelessWidget {
   final String groupChatId, groupName;
+
   GroupChatRoom({required this.groupName, required this.groupChatId, Key? key})
       : super(key: key);
 

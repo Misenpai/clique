@@ -14,7 +14,6 @@ String getUserName() {
     _firestore.collection('users').doc(user.uid).get().then((doc) {
       if (doc.exists) {
         userName = doc.data()!['name'];
-        // print('Current user name: $userName');
       } else {
         print('No such document!');
       }

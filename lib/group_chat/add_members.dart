@@ -1,12 +1,12 @@
-// ignore_for_file: avoid_print
+// ignore_for_file: library_private_types_in_public_api, avoid_print
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-class AddMembersInGroup extends StatefulWidget {
+class AddMembersINGroup extends StatefulWidget {
   final String groupChatId, name;
   final List membersList;
-  const AddMembersInGroup(
+  const AddMembersINGroup(
       {required this.name,
       required this.membersList,
       required this.groupChatId,
@@ -14,10 +14,10 @@ class AddMembersInGroup extends StatefulWidget {
       : super(key: key);
 
   @override
-  State<AddMembersInGroup> createState() => _AddMembersInGroupState();
+  _AddMembersINGroupState createState() => _AddMembersINGroupState();
 }
 
-class _AddMembersInGroupState extends State<AddMembersInGroup> {
+class _AddMembersINGroupState extends State<AddMembersINGroup> {
   final TextEditingController _search = TextEditingController();
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   Map<String, dynamic>? userMap;

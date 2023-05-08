@@ -171,7 +171,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
       floatingActionButton: FloatingActionButton(
           child: const Icon(Icons.group),
           onPressed: () => Navigator.of(context)
-              .pushNamedAndRemoveUntil(groupChatscreen, (route) => false)),
+              .pushNamedAndRemoveUntil(groupChatHomeScreen, (route) => false)),
     );
   }
 }
