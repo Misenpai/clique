@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "1069648341780",
-    "project_id": "clique-d0937",
-    "storage_bucket": "clique-d0937.appspot.com"
+    "project_number": "145051601496",
+    "project_id": "clique-c4bf4",
+    "storage_bucket": "clique-c4bf4.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1069648341780:android:79d88b16b3a8d5a1eeb001",
+        "mobilesdk_app_id": "1:145051601496:android:9e92b0da9d741774fd182d",
         "android_client_info": {
           "package_name": "com.misenpai.clique"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1069648341780-og00agkfqskrvq8m989jh4mr4gig40ep.apps.googleusercontent.com",
+          "client_id": "145051601496-87cddimbs0gf8j39feslfe8vl47l23um.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAjkn0sysb4bR3DR2JOWLivVfZBuzp2i1E"
+          "current_key": "AIzaSyBWfi1gfr5sqNHq_5C-bI85HLkceCXcxhk"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1069648341780-og00agkfqskrvq8m989jh4mr4gig40ep.apps.googleusercontent.com",
+              "client_id": "145051601496-87cddimbs0gf8j39feslfe8vl47l23um.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
