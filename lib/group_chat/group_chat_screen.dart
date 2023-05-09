@@ -1,5 +1,6 @@
 // ignore_for_file: library_private_types_in_public_api
 
+import 'package:clique/constants/routes.dart';
 import 'package:clique/group_chat/create_group/add_member.dart';
 import 'package:clique/group_chat/group_chat_room.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -49,6 +50,11 @@ class _GroupChatHomeScreenState extends State<GroupChatHomeScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Groups"),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () => Navigator.of(context)
+              .pushNamedAndRemoveUntil(homeScreenRoute, (route) => false),
+        ),
       ),
       body: isLoading
           ? Container(

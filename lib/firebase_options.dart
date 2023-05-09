@@ -44,42 +44,40 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyBHV_W0Tyzypa0GPHSCXeKe_Csbtdq1cZM',
-    appId: '1:1069648341780:web:5099bef22dc55ddceeb001',
-    messagingSenderId: '1069648341780',
-    projectId: 'clique-d0937',
-    authDomain: 'clique-d0937.firebaseapp.com',
-    storageBucket: 'clique-d0937.appspot.com',
-    measurementId: 'G-J7VQZBCE4K',
+    apiKey: 'AIzaSyAPQ3QERybrhPS2sXlfx95tiD8r7Taf-iw',
+    appId: '1:145051601496:web:c3e692272cd74b67fd182d',
+    messagingSenderId: '145051601496',
+    projectId: 'clique-c4bf4',
+    authDomain: 'clique-c4bf4.firebaseapp.com',
+    storageBucket: 'clique-c4bf4.appspot.com',
+    measurementId: 'G-7B23X52T0T',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyAjkn0sysb4bR3DR2JOWLivVfZBuzp2i1E',
-    appId: '1:1069648341780:android:79d88b16b3a8d5a1eeb001',
-    messagingSenderId: '1069648341780',
-    projectId: 'clique-d0937',
-    storageBucket: 'clique-d0937.appspot.com',
+    apiKey: 'AIzaSyBWfi1gfr5sqNHq_5C-bI85HLkceCXcxhk',
+    appId: '1:145051601496:android:9e92b0da9d741774fd182d',
+    messagingSenderId: '145051601496',
+    projectId: 'clique-c4bf4',
+    storageBucket: 'clique-c4bf4.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyD0A7jKVmDxJoZlb2b-qw6HzwZgEiLRcSU',
-    appId: '1:1069648341780:ios:b7334a1298b3881ceeb001',
-    messagingSenderId: '1069648341780',
-    projectId: 'clique-d0937',
-    storageBucket: 'clique-d0937.appspot.com',
-    iosClientId:
-        '1069648341780-enupcfaqf5r8af1f2j8co9c7qsp9ku89.apps.googleusercontent.com',
+    apiKey: 'AIzaSyAkHPqlSc_0uv-dozzunyGBlzoGu-YaegQ',
+    appId: '1:145051601496:ios:42b3647cb87930ddfd182d',
+    messagingSenderId: '145051601496',
+    projectId: 'clique-c4bf4',
+    storageBucket: 'clique-c4bf4.appspot.com',
+    iosClientId: '145051601496-fcqk1kfac3flrn7s5h5k2hhob3rc1495.apps.googleusercontent.com',
     iosBundleId: 'com.misenpai.clique',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyD0A7jKVmDxJoZlb2b-qw6HzwZgEiLRcSU',
-    appId: '1:1069648341780:ios:b7334a1298b3881ceeb001',
-    messagingSenderId: '1069648341780',
-    projectId: 'clique-d0937',
-    storageBucket: 'clique-d0937.appspot.com',
-    iosClientId:
-        '1069648341780-enupcfaqf5r8af1f2j8co9c7qsp9ku89.apps.googleusercontent.com',
+    apiKey: 'AIzaSyAkHPqlSc_0uv-dozzunyGBlzoGu-YaegQ',
+    appId: '1:145051601496:ios:42b3647cb87930ddfd182d',
+    messagingSenderId: '145051601496',
+    projectId: 'clique-c4bf4',
+    storageBucket: 'clique-c4bf4.appspot.com',
+    iosClientId: '145051601496-fcqk1kfac3flrn7s5h5k2hhob3rc1495.apps.googleusercontent.com',
     iosBundleId: 'com.misenpai.clique',
   );
 }
