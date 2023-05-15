@@ -46,6 +46,16 @@ dependencies:
   cloud_firestore: ^4.6.0
   firebase_storage: ^11.1.2
   uuid: ^3.0.7
+  flutter_launcher_icons: ^0.13.1
+
+flutter_launcher_icons:
+  #  image_path: "assets/images/icon-128x128.png"
+  image_path_android: "assets/icon/icon.png"
+  image_path_ios: "assets/icon/icon.png"
+  android: true # can specify file name here e.g. "ic_launcher"
+  ios: true # can specify file name here e.g. "My-Launcher-Icon"
+  min_sdk_android: 21 # android min sdk min:16, default 21
+  remove_alpha_ios: true
 
 dev_dependencies:
   flutter_test:
@@ -71,6 +81,7 @@ flutter:
   assets:
    - assets/images/facebook.png
    - assets/images/google.png
+   - assets/icon/icon.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:
